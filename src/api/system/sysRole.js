@@ -2,8 +2,14 @@
 角色管理相关的API请求函数
 */
 import request from '@/utils/request'
-// 常量
-const api_name = '/system/role'
+import {
+  API_ROLE_BATCH,
+  API_ROLE_ID,
+  API_ROLE_LIST,
+  API_ROLE_REMOVE,
+  API_ROLE_SAVE,
+  API_ROLE_UPDATE
+} from '@/constants/api'
 export default {
   /*
   获取角色分页列表(带搜索)
@@ -11,7 +17,7 @@ export default {
   getPageList(searchObj) {
     return request({
       // 接口路径
-      url: `${api_name}/list`,
+      url: API_ROLE_LIST,
       // 提交方式
       method: 'get',
       // 参数
@@ -23,7 +29,7 @@ export default {
 */
   saveRole(role) {
     return request({
-      url: `${api_name}/save`,
+      url: API_ROLE_SAVE,
       method: 'post',
       // 传递json格式用 data:对象名字 ,也就是后端加了@RequestBody用data。。。没添加就使用params
       data: role
@@ -34,7 +40,7 @@ export default {
   */
   getRoleId(id) {
     return request({
-      url: `${api_name}/findRoleById/${id}`,
+      url: API_ROLE_ID + '/' + id,
       method: 'get'
     })
   },
@@ -43,7 +49,7 @@ export default {
   */
   updateById(role) {
     return request({
-      url: `${api_name}/update`,
+      url: API_ROLE_UPDATE,
       method: 'put',
       data: role
     })
@@ -53,7 +59,7 @@ export default {
   */
   removeById(id) {
     return request({
-      url: `${api_name}/remove/${id}`,
+      url: API_ROLE_REMOVE + '/' + id,
       method: 'delete'
     })
   },
@@ -62,22 +68,9 @@ export default {
   */
   batchRemove(idList) {
     return request({
-      url: `${api_name}/batchRemove`,
+      url: API_ROLE_BATCH,
       method: 'delete',
       data: idList
     })
   }
-  /*
-  获取角色分页列表(带搜索)
-  */
-/*  getPageList(page, limit, searchObj) {
-    return request({
-      // 接口路径
-      url: `${api_name}/${page}/${limit}`,
-      // 提交方式
-      method: 'get',
-      // 参数
-      params: searchObj
-    })
-  },*/
 }

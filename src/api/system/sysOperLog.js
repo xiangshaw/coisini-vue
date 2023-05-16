@@ -2,8 +2,8 @@
 操作日志相关的API请求函数
 */
 import request from '@/utils/request'
-// 常量
-const api_name = '/system/OperLog'
+import { API_OPER_LOG_BATCH, API_OPER_LOG_GET, API_OPER_LOG_LIST, API_OPER_LOG_REMOVE } from '@/constants/api'
+
 export default {
   /*
   条件分页查询操作日志(带搜索)
@@ -11,7 +11,7 @@ export default {
   getPageList(searchObj) {
     return request({
       // 接口路径
-      url: `${api_name}/list`,
+      url: API_OPER_LOG_LIST,
       // 提交方式
       method: 'get',
       // 参数
@@ -23,7 +23,7 @@ export default {
  */
   getById(id) {
     return request({
-      url: `${api_name}/get/${id}`,
+      url: API_OPER_LOG_GET + '/' + id,
       method: 'get'
     })
   },
@@ -32,7 +32,7 @@ export default {
   */
   removeById(id) {
     return request({
-      url: `${api_name}/remove/${id}`,
+      url: API_OPER_LOG_REMOVE + '/' + id,
       method: 'delete'
     })
   },
@@ -41,7 +41,7 @@ export default {
   */
   batchRemove(idList) {
     return request({
-      url: `${api_name}/batchRemove`,
+      url: API_OPER_LOG_BATCH,
       method: 'delete',
       data: idList
     })

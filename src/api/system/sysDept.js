@@ -1,9 +1,16 @@
-import request from '@/utils/request'
-
 /*
 菜单管理相关的API请求函数
 */
-const api_name = '/system/dept'
+import request from '@/utils/request'
+import {
+  API_DEPT_DO_ASSIGN,
+  API_DEPT_LIST,
+  API_DEPT_POST,
+  API_DEPT_REMOVE,
+  API_DEPT_SAVE,
+  API_DEPT_STATUS, API_DEPT_TO_ASSIGN,
+  API_DEPT_UPDATE
+} from '@/constants/api'
 
 export default {
 
@@ -12,7 +19,7 @@ export default {
   */
   findNodes() {
     return request({
-      url: `${api_name}/findNodes`,
+      url: API_DEPT_LIST,
       method: 'get'
     })
   },
@@ -22,7 +29,7 @@ export default {
   */
   removeById(id) {
     return request({
-      url: `${api_name}/remove/${id}`,
+      url: API_DEPT_REMOVE + '/' + id,
       method: 'delete'
     })
   },
@@ -32,7 +39,7 @@ export default {
   */
   saveDept(sysDept) {
     return request({
-      url: `${api_name}/save`,
+      url: API_DEPT_SAVE,
       method: 'post',
       data: sysDept
     })
@@ -43,7 +50,7 @@ export default {
   */
   updateById(sysDept) {
     return request({
-      url: `${api_name}/update`,
+      url: API_DEPT_UPDATE,
       method: 'put',
       data: sysDept
     })
@@ -51,7 +58,7 @@ export default {
   // 更新菜单状态
   updateStatus(id, status) {
     return request({
-      url: `${api_name}/updateStatus/${id}/${status}`,
+      url: API_DEPT_STATUS + '/' + id + '/' + status,
       method: 'get'
     })
   },
@@ -61,7 +68,7 @@ export default {
   */
   getPostByDeptId(postId) {
     return request({
-      url: `${api_name}/getPostByDept/${postId}`,
+      url: API_DEPT_POST + '/' + postId,
       method: 'get'
     })
   },
@@ -70,7 +77,7 @@ export default {
   */
   deptAssign(deptVo) {
     return request({
-      url: `${api_name}/doAssign`,
+      url: API_DEPT_DO_ASSIGN,
       method: 'post',
       data: deptVo
     })
@@ -80,7 +87,7 @@ export default {
  */
   getRoleByDeptId(roleId) {
     return request({
-      url: `${api_name}/toAssign/${roleId}`,
+      url: API_DEPT_TO_ASSIGN + '/' + roleId,
       method: 'get'
     })
   }

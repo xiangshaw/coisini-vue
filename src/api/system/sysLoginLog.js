@@ -2,8 +2,8 @@
 登录日志相关的API请求函数
 */
 import request from '@/utils/request'
-// 常量
-const api_name = '/system/loginLog'
+import { API_LOGIN_LOG_BATCH, API_LOGIN_LOG_GET, API_LOGIN_LOG_LIST, API_LOGIN_LOG_REMOVE } from '@/constants/api'
+
 export default {
   /*
   条件分页查询登录日志(带搜索)
@@ -11,21 +11,7 @@ export default {
   getPageList(searchObj) {
     return request({
       // 接口路径
-      url: `${api_name}/list`,
-      // 提交方式
-      method: 'get',
-      // 参数
-      params: searchObj
-    })
-  },
-
-  /*
- 条件分页查询登录日志(动态SQL查询，未使用)
- */
-  getPageListV2(page, limit, searchObj) {
-    return request({
-      // 接口路径
-      url: `${api_name}/v2/${page}/${limit}`,
+      url: API_LOGIN_LOG_LIST,
       // 提交方式
       method: 'get',
       // 参数
@@ -37,7 +23,7 @@ export default {
  */
   getById(id) {
     return request({
-      url: `${api_name}/get/${id}`,
+      url: API_LOGIN_LOG_GET + '/' + id,
       method: 'get'
     })
   },
@@ -46,7 +32,7 @@ export default {
   */
   removeById(id) {
     return request({
-      url: `${api_name}/remove/${id}`,
+      url: API_LOGIN_LOG_REMOVE + '/' + id,
       method: 'delete'
     })
   },
@@ -55,7 +41,7 @@ export default {
   */
   batchRemove(idList) {
     return request({
-      url: `${api_name}/batchRemove`,
+      url: API_LOGIN_LOG_BATCH,
       method: 'delete',
       data: idList
     })

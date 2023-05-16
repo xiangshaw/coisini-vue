@@ -1,9 +1,15 @@
-import request from '@/utils/request'
-
 /*
 菜单管理相关的API请求函数
 */
-const api_name = '/system/menu'
+import request from '@/utils/request'
+import {
+  API_MENU_DO_ASSIGN,
+  API_MENU_LIST,
+  API_MENU_REMOVE,
+  API_MENU_SAVE, API_MENU_STATUS,
+  API_MENU_TO_ASSIGN,
+  API_MENU_UPDATE
+} from '@/constants/api'
 
 export default {
 
@@ -12,7 +18,7 @@ export default {
   */
   findNodes() {
     return request({
-      url: `${api_name}/findNodes`,
+      url: API_MENU_LIST,
       method: 'get'
     })
   },
@@ -22,7 +28,7 @@ export default {
  */
   saveMenu(sysMenu) {
     return request({
-      url: `${api_name}/save`,
+      url: API_MENU_SAVE,
       method: 'post',
       data: sysMenu
     })
@@ -32,7 +38,7 @@ export default {
  */
   updateById(sysMenu) {
     return request({
-      url: `${api_name}/update`,
+      url: API_MENU_UPDATE,
       method: 'put',
       data: sysMenu
     })
@@ -43,7 +49,7 @@ export default {
   */
   removeById(id) {
     return request({
-      url: `${api_name}/remove/${id}`,
+      url: API_MENU_REMOVE + '/' + id,
       method: 'delete'
     })
   },
@@ -52,7 +58,7 @@ export default {
   */
   toAssign(roleId) {
     return request({
-      url: `${api_name}/toAssign/${roleId}`,
+      url: API_MENU_TO_ASSIGN + '/' + roleId,
       method: 'get'
     })
   },
@@ -61,7 +67,7 @@ export default {
   */
   doAssign(assginMenuVo) {
     return request({
-      url: `${api_name}/doAssign`,
+      url: API_MENU_DO_ASSIGN,
       method: 'post',
       data: assginMenuVo
     })
@@ -69,7 +75,7 @@ export default {
   // 更新菜单状态
   updateStatus(id, status) {
     return request({
-      url: `${api_name}/updateStatus/${id}/${status}`,
+      url: API_MENU_STATUS + '/' + id + '/' + status,
       method: 'get'
     })
   }

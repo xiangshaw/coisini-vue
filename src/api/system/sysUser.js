@@ -1,6 +1,16 @@
+/*
+用户管理相关的API请求函数
+*/
 import request from '@/utils/request'
-
-const api_name = '/system/user'
+import {
+  API_USER_DO_ASSIGN,
+  API_USER_ID,
+  API_USER_LIST,
+  API_USER_REMOVE,
+  API_USER_SAVE,
+  API_USER_STATUS, API_USER_TO_ASSIGN,
+  API_USER_UPDATE
+} from '@/constants/api'
 
 export default {
   /*
@@ -8,7 +18,7 @@ export default {
   */
   getPageList(searchObj) {
     return request({
-      url: `${api_name}/list`,
+      url: API_USER_LIST,
       method: 'get',
       params: searchObj // url查询字符串或表单键值对
     })
@@ -18,7 +28,7 @@ export default {
   */
   getById(id) {
     return request({
-      url: `${api_name}/findUserById/${id}`,
+      url: API_USER_ID + '/' + id,
       method: 'get'
     })
   },
@@ -27,7 +37,7 @@ export default {
   */
   saveUser(role) {
     return request({
-      url: `${api_name}/save`,
+      url: API_USER_SAVE,
       method: 'post',
       data: role
     })
@@ -37,7 +47,7 @@ export default {
   */
   updateById(role) {
     return request({
-      url: `${api_name}/update`,
+      url: API_USER_UPDATE,
       method: 'put',
       data: role
     })
@@ -47,14 +57,14 @@ export default {
   */
   removeById(id) {
     return request({
-      url: `${api_name}/remove/${id}`,
+      url: API_USER_REMOVE + '/' + id,
       method: 'delete'
     })
   },
   // 更新用户状态
   updateStatus(id, status) {
     return request({
-      url: `${api_name}/updateStatus/${id}/${status}`,
+      url: API_USER_STATUS + '/' + id + '/' + status,
       method: 'get'
     })
   },
@@ -63,7 +73,7 @@ export default {
  */
   getRolesByUserId(userId) {
     return request({
-      url: `${api_name}/toAssign/${userId}`,
+      url: API_USER_TO_ASSIGN + '/' + userId,
       method: 'get'
     })
   },
@@ -72,7 +82,7 @@ export default {
   */
   assignRoles(assignRoleVo) {
     return request({
-      url: `${api_name}/doAssign`,
+      url: API_USER_DO_ASSIGN,
       method: 'post',
       data: assignRoleVo
     })

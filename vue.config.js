@@ -7,7 +7,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = defaultSettings.title || 'vue Admin Template' // page title
+const name = defaultSettings.title || 'COISINI.CN - VUE' // page title
 
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
@@ -31,14 +31,14 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
-    port: port,
+    port: port, // 设置本地默认端口
     open: true,
     overlay: {
       warnings: false,
       errors: true
     },
     // before: require('./mock/mock-server.js')
-    proxy: {
+    proxy: { // 设置代理，必须填
       '/dev-api': { // 匹配所有以 '/dev-api'开头的请求路径 跳转到http://localhost
         target: 'http://localhost:9422',
         changeOrigin: true, // 支持跨域
